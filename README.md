@@ -1,5 +1,10 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/graphiteapp/graphite-statsd.svg?style=flat)](https://hub.docker.com/r/graphiteapp/graphite-statsd/) [![Docker Size](https://img.shields.io/docker/image-size/graphiteapp/graphite-statsd.svg?style=flat&?sort=date)](https://hub.docker.com/r/graphiteapp/graphite-statsd/)
+Stripped down version of the upstream.
+```
+n run --rm -p 8181:8181 -v /var/lib/collectd/rrd:/opt/graphite/storage/rrd  locals.tf/graphite:latest
 
+```
+
+------
 
 This is official Graphite docker image repo.
 

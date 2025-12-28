@@ -46,9 +46,6 @@ else
     export GUNICORN_EXTRA_PARAMS="--preload --threads=${GRAPHITE_WSGI_THREADS} "
 fi
 
-# start nginx if not disabled
-[[ -f "/etc/service/nginx/down" ]] || sv start nginx || exit 1
-
 exec /opt/graphite/bin/gunicorn wsgi --pythonpath=/opt/graphite/webapp/graphite \
     ${GUNICORN_EXTRA_PARAMS} \
     --worker-class=${GRAPHITE_WSGI_WORKER_CLASS} \
@@ -56,5 +53,7 @@ exec /opt/graphite/bin/gunicorn wsgi --pythonpath=/opt/graphite/webapp/graphite 
     --limit-request-line=${GRAPHITE_WSGI_REQUEST_LINE} \
     --max-requests=${GRAPHITE_WSGI_MAX_REQUESTS} \
     --timeout=${GRAPHITE_WSGI_REQUEST_TIMEOUT} \
-    --bind=0.0.0.0:8080 \
-    --log-file=/var/log/gunicorn.log
+    --bind=0.0.0.0:8181 \
+    --log-file=/proc/self/fd/2
+
+# todo(ln) no logs
